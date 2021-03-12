@@ -1,6 +1,7 @@
 package Museum;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Image;
 
@@ -85,14 +86,30 @@ public class Pic_Exp extends JFrame {
 		contentPane.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("\uC88B\uC544\uC694");
-		btnNewButton_1.setBounds(12, 493, 119, 35);
+		btnNewButton_1.setBounds(22, 530, 119, 35);
 		contentPane.add(btnNewButton_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("    \uD55C\uC904\uD3C9");
-		lblNewLabel_2.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_2.setBounds(12, 536, 167, 25);
-		contentPane.add(lblNewLabel_2);
+		JLabel comm = new JLabel("    \uD55C\uC904\uD3C9");
+		comm.setHorizontalAlignment(SwingConstants.CENTER);
+		comm.setFont(new Font("맑은 고딕", Font.BOLD | Font.ITALIC, 16));
+		comm.setBounds(12, 495, 139, 25);
+		contentPane.add(comm);
+		
+		JPanel panel = new JPanel();//한줄평들을 나열해놓을 공간 - 나중에 수정할 수도 있음
+		panel.setBounds(163, 490, 700, 120);
+		contentPane.add(panel);
 		setVisible(true);
+		//한줄평 추가해보기!
+		Data_in_DB.connect();
+		String pic_com[]=Data_in_DB.comment(a);
+		for(int i=0;i<pic_com.length;i++) {
+			if(pic_com[i]!=null) {
+			JLabel co=new JLabel(pic_com[i]);
+			co.setBounds(0, 20*i, 700, 20);
+			co.setForeground(Color.blue);
+			panel.add(co);			
+			}
+		}
 		
 	}
 }
