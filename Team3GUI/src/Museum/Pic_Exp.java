@@ -60,7 +60,7 @@ public class Pic_Exp extends JFrame {
 		setIm.setHorizontalAlignment(SwingConstants.CENTER);
 		ImageIcon expimg=new ImageIcon(Museum.Data_Storage.imglist2[a]);
 		Image img=expimg.getImage();
-		Image changim=img.getScaledInstance(450, 450, Image.SCALE_SMOOTH);//이미지의 사이즈 재조정
+		Image changim=img.getScaledInstance(350, 400, Image.SCALE_SMOOTH);//이미지의 사이즈 재조정
 		ImageIcon ultimate=new ImageIcon(changim);
 		
 		setIm.setIcon(ultimate);

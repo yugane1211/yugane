@@ -1,6 +1,7 @@
 package Museum;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,8 +24,10 @@ public class Pic_Exp_1f extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		JLabel lblNewLabel = new JLabel("\uADF8\uB9BC\uC758 \uC774\uB984, \uD654\uAC00 \uC774\uB984, \uC5F0\uB3C4");
+		Data_in_DB.connect();
+		String titl=Data_in_DB.picture_head_1f(a);//그림이름,작가,국가가 왼쪽 상단에
+		JLabel lblNewLabel = new JLabel(titl);
+		lblNewLabel.setFont(new Font("굴림", Font.BOLD | Font.ITALIC, 15));
 		lblNewLabel.setBounds(12, 10, 604, 57);
 		contentPane.add(lblNewLabel);
 		
@@ -34,7 +37,7 @@ public class Pic_Exp_1f extends JFrame{
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		ImageIcon expimg = new ImageIcon(Museum.Data_Storage.imglist1[a]);
 		Image img = expimg.getImage();
-		Image changim = img.getScaledInstance(450, 450, Image.SCALE_SMOOTH);
+		Image changim = img.getScaledInstance(350, 400, Image.SCALE_SMOOTH);
 		ImageIcon ultimate = new ImageIcon(changim);
 		
 		lblNewLabel_1.setIcon(ultimate);

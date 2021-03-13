@@ -51,7 +51,43 @@ public class Data_in_DB {
 			}catch(Exception e) {e.getStackTrace();}
 			return country;
 		}
-		
+		//1층 버전
+		static String artist_name_1f[]=new String[13];
+		static String country_1f[]=new String[4];
+		static String[] check1_1f() {//1층의 그림을 그린 화가들의 정보를 문자열 배열에 저장
+			try {
+				String que="select distinct a_artist from art where a_floor=1";
+				pstm=conn.prepareStatement(que);
+				r=pstm.executeQuery();
+				int n=0;
+				while(r.next()) {
+					String a_name=r.getString(1);
+					artist_name_1f[n]=a_name;
+					n++;
+				}
+				r.close();
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {e.getStackTrace();}
+			return artist_name_1f;
+		}
+		static String[] check2_1f() {//1층의 화가들의 출신 국가들을 문자열 배열에 저장
+			try {
+				String que="select distinct a_country from art where a_floor=1";
+				pstm=conn.prepareStatement(que);
+				r=pstm.executeQuery();
+				int n=0;
+				while(r.next()) {
+					String a_coun=r.getString(1);
+					country_1f[n]=a_coun;
+					n++;
+				}
+				r.close();
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {e.getStackTrace();}
+			return country_1f;
+		}
 		static String[] top_five() {//top 5 그림의 이름, 화가이름 불러오기
 			String tit[]=new String[5];
 			try {
@@ -92,7 +128,25 @@ public class Data_in_DB {
 			}catch(Exception e) {}
 			return tit;
 		}
-		
+		static String picture_head_1f(int a) {//1층 각 그림의 설명에서 타이틀 불러오기
+			String tit="";
+			try {
+				String que="select a_name, a_artist, a_year from art where a_no=?";
+				pstm=conn.prepareStatement(que);
+				pstm.setString(1, Integer.toString(a+1));
+				r=pstm.executeQuery();
+				while(r.next()) {
+					String a_name=r.getString(1);
+					String a_artist=r.getString(2);
+					String a_year=r.getString(3);
+					tit=a_name+" / "+a_artist+" / "+a_year;
+				}
+				r.close();
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+			return tit;
+		}
 		///////특정 조건의 버튼 빛나게 하기!(난이도 있음)
 		static int[] bling(String a, String b) {
 			int[] blbl=new int[10];

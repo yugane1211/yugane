@@ -8,6 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -21,7 +23,9 @@ import java.awt.Point;
 public class UI_Floor_2 extends JFrame {
 
 	private JPanel contentPane;
-	/*public static void main(String[] args) {
+	ImageIcon im2=new ImageIcon("C:\\Users\\82105\\git\\yugane\\Team3GUI\\Floor2.jpg");
+	Image im2f=im2.getImage();
+	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -32,7 +36,7 @@ public class UI_Floor_2 extends JFrame {
 				}
 			}
 		});
-	}*/
+	}
 
 	class TOP5 extends Thread{
 		JLabel t;
@@ -65,14 +69,14 @@ public class UI_Floor_2 extends JFrame {
 	 * Create the frame.
 	 */
 	public UI_Floor_2() {
-		setTitle("2층");
+		setLocation(new Point(1, 0));
+		
 		setBounds(100, 100, 1191, 746);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();//전체 창
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		setResizable(false);
 		
 		JLabel lblNewLabel = new JLabel("2\uCE35");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
@@ -127,14 +131,19 @@ public class UI_Floor_2 extends JFrame {
 		panel.add(RESET);
 		
 		
-		JPanel panel_1 = new JPanel();
+		JPanel panel_1 = new JPanel() {
+			public void paintComponent(Graphics g){	            
+	            g.drawImage(im2f,0,9,null);
+	            setOpaque(false);
+	            super.paintComponent(g);
+	        }
+		};
 		
 		panel_1.setLayout(null);
-		JLabel image2=new JLabel(new ImageIcon("C:\\Users\\82105\\git\\yugane\\Team3GUI\\Floor2.jpg"));
-		image2.setOpaque(true);
-		panel_1.add(image2);
+		//JLabel image2=new JLabel();
+		//panel_1.add(image2);
 		panel_1.setBounds(12, 136, 1153, 504);
-		image2.setBounds(0, 0, 1153, 504);
+		//image2.setBounds(0, 0, 1153, 504);
 		contentPane.add(panel_1);
 		
 		//but1~15 : 클릭시 각 그림의 이미지와 설명이 담긴 패널이 나옴
@@ -402,4 +411,5 @@ public class UI_Floor_2 extends JFrame {
 			}
 		});
 	}
+	
 }
