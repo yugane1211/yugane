@@ -154,12 +154,12 @@ public class Data_in_DB {
 			}
 			return blbl;
 		}
-		static String[] comment(int a) {
-			String com[]=new String[10];
+		static String[] comment(int a) {//그림 설명창에서 한줄평 띄우기
+			String com[]=new String[5];
 			try {
 				String que="select c_id, my_comm from mypage natural join customer where a_no=?";
 				pstm=conn.prepareStatement(que);
-				pstm.setString(1, Integer.toString(a));
+				pstm.setInt(1,a);
 				r=pstm.executeQuery();
 				int n=0;
 				while(r.next()) {
@@ -178,21 +178,22 @@ public class Data_in_DB {
 		
 		
 		
-	public static void main(String[] args) throws SQLException{
+	public static void main(String[] args) throws SQLException{//SQL이 제대로 작동하는지 시험하는 메인함수
 		connect();
 		
+		String com[]=new String[10];
 		try {
-			String que="select c_id, my_comm from mypage natural join customer where a_no=16";
+			String que="select c_id, my_comm from mypage natural join customer where a_no=?";
 			pstm=conn.prepareStatement(que);
-			//pstm.setString(1, Integer.toString(16));
-			
+			pstm.setInt(1,16);
 			r=pstm.executeQuery();
 			int n=0;
 			while(r.next()) {
 				String c_id=r.getString(1);
 				String my_comm=r.getString(2);
+				com[n]=c_id+"/"+my_comm;
 				System.out.println(c_id+"/"+my_comm);
-				
+				n++;
 			}
 			r.close();
 			pstm.close();

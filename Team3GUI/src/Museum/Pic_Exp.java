@@ -55,39 +55,39 @@ public class Pic_Exp extends JFrame {
 		pic_lab.setBounds(12, 10, 604, 57);
 		contentPane.add(pic_lab);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(38, 77, 400, 400);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		JLabel setIm = new JLabel("");
+		setIm.setBounds(38, 77, 400, 400);
+		setIm.setHorizontalAlignment(SwingConstants.CENTER);
 		ImageIcon expimg=new ImageIcon(Museum.Data_Storage.imglist2[a]);
 		Image img=expimg.getImage();
 		Image changim=img.getScaledInstance(450, 450, Image.SCALE_SMOOTH);//이미지의 사이즈 재조정
 		ImageIcon ultimate=new ImageIcon(changim);
 		
-		lblNewLabel_1.setIcon(ultimate);
-		contentPane.add(lblNewLabel_1);//그림 이미지가 들어가는 자리
-		JTextArea textArea = new JTextArea();
-		JScrollPane scrollPane = new JScrollPane(textArea);
+		setIm.setIcon(ultimate);
+		contentPane.add(setIm);//그림 이미지가 들어가는 자리
+		JTextArea ImExp = new JTextArea();
+		JScrollPane scrollPane = new JScrollPane(ImExp);
 		scrollPane.setBounds(468, 77, 425, 407);
 		contentPane.add(scrollPane);
 		
 
 		
 		
-		textArea.setText(b);//그림에 대한 설명 집어넣기
-		textArea.setEditable(false);
-		textArea.setCaretPosition(0);
-		JButton btnNewButton = new JButton("\uB2EB\uAE30");
-		btnNewButton.addActionListener(new ActionListener() {
+		ImExp.setText(b);//그림에 대한 설명 집어넣기
+		ImExp.setEditable(false);
+		ImExp.setCaretPosition(0);
+		JButton clo = new JButton("\uB2EB\uAE30");
+		clo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(738, 20, 155, 35);
-		contentPane.add(btnNewButton);
+		clo.setBounds(738, 20, 155, 35);
+		contentPane.add(clo);
 		
-		JButton btnNewButton_1 = new JButton("\uC88B\uC544\uC694");
-		btnNewButton_1.setBounds(22, 530, 119, 35);
-		contentPane.add(btnNewButton_1);
+		JButton like = new JButton("\uC88B\uC544\uC694");
+		like.setBounds(22, 530, 119, 35);
+		contentPane.add(like);
 		
 		JLabel comm = new JLabel("    \uD55C\uC904\uD3C9");
 		comm.setHorizontalAlignment(SwingConstants.CENTER);
@@ -95,19 +95,22 @@ public class Pic_Exp extends JFrame {
 		comm.setBounds(12, 495, 139, 25);
 		contentPane.add(comm);
 		
-		JPanel panel = new JPanel();//한줄평들을 나열해놓을 공간 - 나중에 수정할 수도 있음
-		panel.setBounds(163, 490, 700, 120);
-		contentPane.add(panel);
+		JPanel comm_in = new JPanel();//한줄평들을 나열해놓을 공간 - 나중에 수정할 수도 있음
+		comm_in.setBounds(163, 490, 700, 120);
+		comm_in.setLayout(null);
+		contentPane.add(comm_in);
 		setVisible(true);
 		//한줄평 추가해보기!
 		Data_in_DB.connect();
-		String pic_com[]=Data_in_DB.comment(a);
+		String pic_com[]=Data_in_DB.comment(a+16);
+		JLabel [] comd=new JLabel[pic_com.length];
 		for(int i=0;i<pic_com.length;i++) {
 			if(pic_com[i]!=null) {
-			JLabel co=new JLabel(pic_com[i]);
-			co.setBounds(0, 20*i, 700, 20);
-			co.setForeground(Color.blue);
-			panel.add(co);			
+				comd[i]=new JLabel(pic_com[i]);
+				comd[i].setBounds(0, 20*i, 700, 20);
+				comm_in.add(comd[i]);
+				comd[i].setOpaque(true);
+				comd[i].setVisible(true);
 			}
 		}
 		

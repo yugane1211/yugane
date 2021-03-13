@@ -16,15 +16,12 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Point;
 
 public class UI_Floor_2 extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,7 +32,7 @@ public class UI_Floor_2 extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	class TOP5 extends Thread{
 		JLabel t;
@@ -68,12 +65,14 @@ public class UI_Floor_2 extends JFrame {
 	 * Create the frame.
 	 */
 	public UI_Floor_2() {
-		
+		setTitle("2층");
 		setBounds(100, 100, 1191, 746);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();//전체 창
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		setResizable(false);
 		
 		JLabel lblNewLabel = new JLabel("2\uCE35");
 		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
@@ -85,39 +84,39 @@ public class UI_Floor_2 extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setFont(new Font("굴림", Font.PLAIN, 15));
-		comboBox.setBounds(127, 25, 204, 32);
-		panel.add(comboBox);
+		JComboBox<String> anames = new JComboBox<String>();
+		anames.setFont(new Font("굴림", Font.PLAIN, 15));
+		anames.setBounds(127, 25, 204, 32);
+		panel.add(anames);
 		Data_in_DB.connect();//sql을 이용해 화가 이름(중복 제거)을 불러와서 체크박스에 추가
 		for (int h=0;h<Data_in_DB.check1().length;h++) {
-			comboBox.addItem(Data_in_DB.check1()[h]);
+			anames.addItem(Data_in_DB.check1()[h]);
 		}
-		comboBox.setSelectedItem(null);//초기에 설정된 항목이 없게 만드는 명령
+		anames.setSelectedItem(null);//초기에 설정된 항목이 없게 만드는 명령
 		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		comboBox_1.setBounds(511, 25, 204, 32);
-		panel.add(comboBox_1);
+		JComboBox<String> coun = new JComboBox<String>();
+		coun.setFont(new Font("굴림", Font.PLAIN, 15));
+		coun.setBounds(511, 25, 204, 32);
+		panel.add(coun);
 		Data_in_DB.connect();//sql 이용해 국가(중복 제거)를 불러와서 체크박스에 추가
 		for (int h=0;h<Data_in_DB.check2().length;h++) {
-			comboBox_1.addItem(Data_in_DB.check2()[h]);
+			coun.addItem(Data_in_DB.check2()[h]);
 		}
-		comboBox_1.setSelectedItem(null);
+		coun.setSelectedItem(null);
 		
 		
 		
-		JLabel lblNewLabel_1 = new JLabel("\uD654\uAC00 \uC774\uB984");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(12, 25, 108, 32);
-		panel.add(lblNewLabel_1);
+		JLabel anameLabel = new JLabel("\uD654\uAC00 \uC774\uB984");
+		anameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		anameLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		anameLabel.setBounds(12, 25, 108, 32);
+		panel.add(anameLabel);
 		
-		JLabel lblNewLabel_1_1 = new JLabel("\uAD6D\uAC00");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_1_1.setBounds(396, 25, 108, 32);
-		panel.add(lblNewLabel_1_1);
+		JLabel acounLabel = new JLabel("\uAD6D\uAC00");
+		acounLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		acounLabel.setFont(new Font("굴림", Font.PLAIN, 15));
+		acounLabel.setBounds(396, 25, 108, 32);
+		panel.add(acounLabel);
 		
 		JButton SEAR = new JButton("\uAC80 \uC0C9");
 		SEAR.setBounds(804, 25, 153, 32);
@@ -239,17 +238,31 @@ public class UI_Floor_2 extends JFrame {
 		lkk.start();
 	
 		
-		JButton btnNewButton_1 = new JButton("\uB85C\uBE44\uB85C \uB098\uAC00\uAE30");//로비로 나가기
-		btnNewButton_1.setBackground(new Color(255, 255, 204));
-		btnNewButton_1.setFont(new Font("HY헤드라인M", Font.BOLD, 17));
-		btnNewButton_1.setBounds(977, 656, 188, 43);
-		contentPane.add(btnNewButton_1);
+		JButton LobbyBut = new JButton("\uB85C\uBE44\uB85C \uB098\uAC00\uAE30");//로비로 나가기
+		LobbyBut.setBackground(new Color(255, 255, 204));
+		LobbyBut.setFont(new Font("HY헤드라인M", Font.BOLD, 17));
+		LobbyBut.setBounds(977, 656, 188, 43);
+		contentPane.add(LobbyBut);
+		LobbyBut.addActionListener(new ActionListener() {//누르면 로비로 돌아가기
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Lobby();
+			}
+		});
 		
-		JButton btnNewButton_2 = new JButton("1\uCE35\uC73C\uB85C");//1층 화면으로 전환
-		btnNewButton_2.setBackground(new Color(255, 255, 204));
-		btnNewButton_2.setFont(new Font("HY헤드라인M", Font.BOLD, 17));
-		btnNewButton_2.setBounds(777, 656, 188, 43);
-		contentPane.add(btnNewButton_2);
+		JButton GoToFirst = new JButton("1\uCE35\uC73C\uB85C");//1층 화면으로 전환
+		GoToFirst.setBackground(new Color(255, 255, 204));
+		GoToFirst.setFont(new Font("HY헤드라인M", Font.BOLD, 17));
+		GoToFirst.setBounds(777, 656, 188, 43);
+		contentPane.add(GoToFirst);
+		GoToFirst.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				UI_Floor_1 f1=new UI_Floor_1();
+				f1.setVisible(true);				
+			}
+		});
+		
 		
 		//각 버튼의 값을 이용해서 해당하는 그림번호의 그림이 설명되어있는 Pic_Exp 프레임 소환
 		but1.addActionListener(new ActionListener() {
@@ -362,10 +375,10 @@ public class UI_Floor_2 extends JFrame {
 		JButton[] btngp= {but1,but2,but3,but4,but5,but6,but7,but8,but9,but10,but11,but12,but13,but14,but15};
 		SEAR.addActionListener(new ActionListener() {//특정 조건에 맞으면 검색
 			public void actionPerformed(ActionEvent e) {				
-				int i1=comboBox.getSelectedIndex();
-				String text1=comboBox.getItemAt(i1);
-				int i2=comboBox_1.getSelectedIndex();
-				String text2=comboBox_1.getItemAt(i2);
+				int i1=anames.getSelectedIndex();
+				String text1=anames.getItemAt(i1);
+				int i2=coun.getSelectedIndex();
+				String text2=coun.getItemAt(i2);
 				Data_in_DB.connect();
 				int[] numpic=Data_in_DB.bling(text1, text2);
 				
@@ -384,8 +397,8 @@ public class UI_Floor_2 extends JFrame {
 				for(int i=0;i<btngp.length;i++) {
 					btngp[i].setBackground(Color.white);
 				}
-				comboBox.setSelectedItem(null);
-				comboBox_1.setSelectedItem(null);
+				anames.setSelectedItem(null);
+				coun.setSelectedItem(null);
 			}
 		});
 	}
