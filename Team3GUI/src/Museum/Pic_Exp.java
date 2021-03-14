@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.ImageIcon;
 import javax.swing.SwingConstants;
 import javax.swing.JTextArea;
@@ -17,10 +18,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import javax.swing.JTextField;
 
 public class Pic_Exp extends JFrame {
-
+	protected String userid=Login.t.getText();
 	private JPanel contentPane;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -89,6 +92,7 @@ public class Pic_Exp extends JFrame {
 		like.setBounds(22, 530, 119, 35);
 		contentPane.add(like);
 		
+		
 		JLabel comm = new JLabel("    \uD55C\uC904\uD3C9");
 		comm.setHorizontalAlignment(SwingConstants.CENTER);
 		comm.setFont(new Font("맑은 고딕", Font.BOLD | Font.ITALIC, 16));
@@ -99,11 +103,36 @@ public class Pic_Exp extends JFrame {
 		comm_in.setBounds(163, 490, 700, 120);
 		comm_in.setLayout(null);
 		contentPane.add(comm_in);
-		setVisible(true);
-		//한줄평 추가해보기!
+		
+		Data_in_DB.connect();
+		int countt=Data_in_DB.show_count(a+16);
+		JLabel like_count = new JLabel(Integer.toString(countt));
+		like_count.setBounds(16, 575, 125, 32);
+		contentPane.add(like_count);
+		
+		textField = new JTextField();
+		textField.setBounds(163, 616, 590, 21);
+		contentPane.add(textField);
+		textField.setColumns(10);
+		
+		JButton up = new JButton("\uB4F1\uB85D");
+		up.setBounds(772, 615, 91, 23);
+		contentPane.add(up);
+		up.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "등록되었습니다.","",JOptionPane.INFORMATION_MESSAGE);
+				String conte=textField.getText();
+				Data_in_DB.connect();
+				Data_in_DB.updatecomment((a+16),userid,conte);
+				setVisible(false);
+				new Pic_Exp(a, b);
+			}
+		});
+		
+		
 		Data_in_DB.connect();
 		String pic_com[]=Data_in_DB.comment(a+16);
-		JLabel [] comd=new JLabel[pic_com.length];
+		JLabel [] comd=new JLabel[pic_com.length];//각 그림들에 대한 한줄평들이 순서대로 띄워짐
 		for(int i=0;i<pic_com.length;i++) {
 			if(pic_com[i]!=null) {
 				comd[i]=new JLabel(pic_com[i]);
@@ -113,6 +142,15 @@ public class Pic_Exp extends JFrame {
 				comd[i].setVisible(true);
 			}
 		}
-		
+		like.addActionListener(new ActionListener() {//좋아요 버튼 누르면 그림에 대한 좋아요 수 증가
+			public void actionPerformed(ActionEvent e) {
+				Data_in_DB.connect();
+				Data_in_DB.lik_count(a+16);
+				Data_in_DB.connect();
+				int updatedup=Data_in_DB.show_count(a+16);
+				like_count.setText(Integer.toString(updatedup));
+			}
+		});
+		setVisible(true);
 	}
 }

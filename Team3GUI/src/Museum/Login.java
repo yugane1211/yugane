@@ -27,6 +27,7 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Login extends JFrame{
+	static JTextField t=new JTextField(20);
 	Login(){	      
 	      super("로그인 창");
 	      Container c=getContentPane();	      
@@ -44,7 +45,7 @@ public class Login extends JFrame{
 	      j4.setBounds(100, 40, 200, 200);
 	      
 	      
-	      JTextField t=new JTextField(20);
+	      
 	      t.setBounds(130, 180, 120, 20);
 	      
 	      JLabel j2=new JLabel("아이디");
@@ -69,12 +70,15 @@ public class Login extends JFrame{
 	   	      
 	      bb.addActionListener(new ActionListener() {
 	          public void actionPerformed(ActionEvent e) {	             
-	        	  int i=JOptionPane.showConfirmDialog(null,"로그인성공","확인",JOptionPane.YES_OPTION);
-	            
-	         	  if(i==JOptionPane.YES_OPTION) {
-	                setVisible(false);
-	                new Lobby();
-	             }
+	        	  Data_in_DB.connect();
+	        	  int g=Data_in_DB.login(t.getText(), t1.getText());
+	        	  if(g==0) {
+	        		  JOptionPane.showMessageDialog(null, "아이디 혹은 비밀번호가 일치하지 않습니다.","",JOptionPane.WARNING_MESSAGE);
+	        	  }else {
+	        		  JOptionPane.showMessageDialog(null, t.getText()+"님, 환영합니다.","",JOptionPane.INFORMATION_MESSAGE);
+	        		  setVisible(false);
+	        		  new Lobby();
+	        	  }
 	          }
 	       });
 	      
@@ -126,9 +130,25 @@ public class Login extends JFrame{
 	         t.setBounds(180,20, 120, 20);
 	         c.add(t);
 	         
-	         JLabel j1=new JLabel("영문/숫자로 입력하세요");
+	         //아이디 중복확인하는 액션
+	         jj2.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					String inid=t.getText();
+					Data_in_DB.connect();
+					int compared=Data_in_DB.compare(inid);
+					if(compared==0) {
+						JOptionPane.showMessageDialog(null, "사용 가능한 아이디입니다.","",JOptionPane.INFORMATION_MESSAGE);
+					}else {
+						JOptionPane.showMessageDialog(null, "중복된 아이디입니다.","",JOptionPane.WARNING_MESSAGE);
+						t.setText("");
+					}
+					
+				}
+			});
+	         
+	         /*JLabel j1=new JLabel("영문/숫자로 입력하세요");
 	         j1.setBounds(180,48, 250, 20);
-	         c.add(j1);
+	         c.add(j1);*/
 	         
 	         JLabel j2=new JLabel("비밀번호");
 	         j2.setBounds(90,90, 120, 20);
@@ -185,20 +205,23 @@ public class Login extends JFrame{
 	         
 	         jj1.addActionListener(new ActionListener() {
 	         public void actionPerformed(ActionEvent e) {
-	            setVisible(false);
-	            
+	            setVisible(false);      
 	         }
 	      });
 	         
 	      
-	         jj.addActionListener(new ActionListener() {
-	            public void actionPerformed(ActionEvent e) {
-	               
-	               
-	            int r=JOptionPane.showConfirmDialog(null,"등록되었습니다","확인",JOptionPane.YES_OPTION);
-	              
+	         jj.addActionListener(new ActionListener() {//회원가입창 등록버튼
+	            public void actionPerformed(ActionEvent e) {         	               
+	            int r=JOptionPane.showConfirmDialog(null,"등록하시겠습니까?","확인",JOptionPane.YES_OPTION);	              
 	               if(r==JOptionPane.YES_OPTION) {
-	                  setVisible(false);
+	                  if(!p.getText().equals(p1.getText())) {
+	                	  JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다.","",JOptionPane.WARNING_MESSAGE);
+	                  }else {
+	                	  JOptionPane.showMessageDialog(null, "가입을 축하드립니다.","",JOptionPane.INFORMATION_MESSAGE);
+	                	  setVisible(false);
+	                	  Data_in_DB.connect();
+	                	  Data_in_DB.joinmuseum(t.getText(),p.getText());
+	                  }
 	               }
 	         
 	            }

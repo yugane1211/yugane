@@ -21,7 +21,7 @@ import java.awt.Color;
 import java.awt.Point;
 
 public class UI_Floor_2 extends JFrame {
-
+	protected String userid=Login.t.getText();
 	private JPanel contentPane;
 	ImageIcon im2=new ImageIcon("C:\\Users\\82105\\git\\yugane\\Team3GUI\\Floor2.jpg");
 	Image im2f=im2.getImage();

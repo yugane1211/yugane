@@ -21,7 +21,7 @@ import javax.swing.border.EmptyBorder;
 import Museum.UI_Floor_2.TOP5;
 
 public class UI_Floor_1 extends JFrame {
-
+	protected String userid=Login.t.getText();
 	private JPanel contentPane;
 	
 	class TOP5 extends Thread{
@@ -93,7 +93,7 @@ public class UI_Floor_1 extends JFrame {
 		
 		JComboBox<String> comboBox = new JComboBox<String>();
 		comboBox.setFont(new Font("굴림", Font.PLAIN, 15));
-		comboBox.setBounds(185, 25, 204, 32);
+		comboBox.setBounds(127, 25, 204, 32);
 		panel.add(comboBox);
 		Data_in_DB.connect();//sql을 이용해 화가 이름(중복 제거)을 불러와서 체크박스에 추가
 		for (int h=0;h<Data_in_DB.check1_1f().length;h++) {
@@ -103,7 +103,7 @@ public class UI_Floor_1 extends JFrame {
 		
 		JComboBox<String> comboBox_1 = new JComboBox<String>();
 		comboBox_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		comboBox_1.setBounds(598, 25, 204, 32);
+		comboBox_1.setBounds(511, 25, 204, 32);
 		panel.add(comboBox_1);
 		Data_in_DB.connect();//sql 이용해 국가(중복 제거)를 불러와서 체크박스에 추가
 		for (int h=0;h<Data_in_DB.check2_1f().length;h++) {
@@ -114,18 +114,22 @@ public class UI_Floor_1 extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("\uD654\uAC00 \uC774\uB984");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(74, 25, 108, 32);
+		lblNewLabel_1.setBounds(12, 25, 108, 32);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_1_1 = new JLabel("\uAD6D\uAC00");
 		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_1_1.setBounds(511, 25, 108, 32);
+		lblNewLabel_1_1.setBounds(396, 25, 108, 32);
 		panel.add(lblNewLabel_1_1);
 		
-		JButton btnNewButton = new JButton("\uAC80 \uC0C9");
-		btnNewButton.setBounds(922, 28, 153, 32);
-		panel.add(btnNewButton);
+		JButton sear = new JButton("\uAC80 \uC0C9");
+		sear.setBounds(804, 28, 153, 32);
+		panel.add(sear);
+		JButton res = new JButton("초기화");
+		res.setBounds(983, 28, 153, 32);
+		panel.add(res);
+		
 		
 		JPanel panel_1 = new JPanel() {
 			public void paintComponent(Graphics g){
@@ -360,6 +364,38 @@ public class UI_Floor_1 extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				new Lobby();
+			}
+		});
+		
+		JButton[] btngp= {bt_p001,bt_p002,bt_p003,bt_p004,bt_p005,
+				bt_p006,bt_p007,bt_p008,bt_p009,bt_p010,bt_p011,bt_p012,
+				bt_p013,bt_p014,bt_p015};
+		sear.addActionListener(new ActionListener() {//특정 조건에 맞으면 검색
+			public void actionPerformed(ActionEvent e) {				
+				int i1=comboBox.getSelectedIndex();
+				String text1=comboBox.getItemAt(i1);
+				int i2=comboBox_1.getSelectedIndex();
+				String text2=comboBox_1.getItemAt(i2);
+				Data_in_DB.connect();
+				int[] numpic=Data_in_DB.bling_1f(text1, text2);
+				
+				for(int j=0;j<numpic.length;j++) {
+					for(int i=0;i<btngp.length;i++) {	
+						if(numpic[j]==Integer.parseInt(btngp[i].getText())) {
+							btngp[i].setBackground(Color.yellow);							
+						}
+						
+					}
+				}
+			}
+		});
+		res.addActionListener(new ActionListener() {//검색조건 초기화
+			public void actionPerformed(ActionEvent e) {
+				for(int i=0;i<btngp.length;i++) {
+					btngp[i].setBackground(Color.white);
+				}
+				comboBox.setSelectedItem(null);
+				comboBox_1.setSelectedItem(null);
 			}
 		});
 

@@ -208,6 +208,66 @@ public class Data_in_DB {
 			}
 			return blbl;
 		}
+		static int[] bling_1f(String a, String b) {//1층 검색 기능
+			int[] blbl=new int[10];
+			if(a==null&&b==null) {
+				
+			}
+			else if(a==null) {
+				try {
+					String que="select a_no from art where a_floor=1 and a_country=?";
+					pstm=conn.prepareStatement(que);
+					pstm.setString(1, b);
+					r=pstm.executeQuery();
+					int n=0;
+					while(r.next()) {
+						int a_no=r.getInt(1);
+						blbl[n]=a_no;
+						n++;
+					}
+					r.close();
+					pstm.close();
+					conn.close();
+				}catch(Exception e) {}
+				
+			}else if(b==null) {
+				try {
+					String que="select a_no from art where a_floor=1 and a_artist=?";
+					pstm=conn.prepareStatement(que);
+					pstm.setString(1, a);
+					r=pstm.executeQuery();
+					int n=0;
+					while(r.next()) {
+						int a_no=r.getInt(1);
+						blbl[n]=a_no;
+						n++;
+					}
+					r.close();
+					pstm.close();
+					conn.close();
+				}catch(Exception e) {}
+			
+			}else {
+				try {
+					String que="select a_no from art where a_floor=1 and a_artist=? and a_country=?";
+					pstm=conn.prepareStatement(que);
+					pstm.setString(1, a);
+					pstm.setString(2, b);
+					r=pstm.executeQuery();
+					int n=0;
+					while(r.next()) {
+						int a_no=r.getInt(1);
+						blbl[n]=a_no;
+						n++;
+					}
+					r.close();
+					pstm.close();
+					conn.close();
+				}catch(Exception e) {}
+				
+			}
+			return blbl;
+		}
 		static String[] comment(int a) {//그림 설명창에서 한줄평 띄우기
 			String com[]=new String[5];
 			try {
@@ -228,32 +288,118 @@ public class Data_in_DB {
 			}catch(Exception e) {}
 			return com;
 		}
+		static void lik_count(int a) {//좋아요 버튼 누르면 값 업데이트
+			int up=0;
+			try {
+				String que="update art set a_fav=a_fav+1 where a_no=?";
+				pstm=conn.prepareStatement(que);
+				pstm.setInt(1,(a));
+				up=pstm.executeUpdate();
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+		}
+		static int show_count(int a) {//좋아요 버듵 밑에 그림의 좋아요 수가 출력되는 함수
+			int up=0;
+			try {
+				String que="select a_fav from art where a_no=?";
+				pstm=conn.prepareStatement(que);
+				pstm.setInt(1,(a));
+				r=pstm.executeQuery();
+				while(r.next()){
+					up=r.getInt(1);
+				}
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+			return up;
+		}
+		static int compare(String str) {//회원가입시 아이디 중복여부 확인
+			int c=0;
+			try {
+				String que="select count(*) from customer where c_id=?";
+				pstm=conn.prepareStatement(que);
+				pstm.setString(1, str);
+				r=pstm.executeQuery();
+				while(r.next()){
+					c=r.getInt(1);
+				}
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+			return c;
+		}
+		static void joinmuseum(String s,String t) {//회원가입을 하면 고객 테이블에 행 삽입
+			int d=0;
+			try {
+				String que="insert into customer values(customer_seq.NEXTVAL, ?, ?)";
+				pstm=conn.prepareStatement(que);
+				pstm.setString(1, s);
+				pstm.setString(2, t);
+				d=pstm.executeUpdate();
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+		}
+		static int login(String id,String pw) {//로그인 가능 여부 확인
+			int c=0;
+			try {
+				String que="select count(*) from customer where c_id=? and c_pw=?";
+				pstm=conn.prepareStatement(que);
+				pstm.setString(1, id);
+				pstm.setString(2, pw);
+				r=pstm.executeQuery();
+				while(r.next()){
+					c=r.getInt(1);
+				}
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+			return c;
+		}
+		static String Mycomm(String myid) {//사용자별로 자신이 쓴 한줄평을 로비창에 띄우기
+			String myc="";
+			try {
+				String que="select a_name||' / '||my_comm from mypage,customer,art\r\n"
+						+ "where mypage.a_no=art.a_no and mypage.c_no=customer.c_no and c_id=?";
+				pstm=conn.prepareStatement(que);
+				pstm.setString(1, myid);
+				r=pstm.executeQuery();
+				while(r.next()) {
+					myc+=r.getString(1)+",";
+				}
+				r.close();
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+			return myc;
+		}
+		static void updatecomment(int a,String b,String c){//한줄평 새로 등록하기
+			int c_no=0;
+			try {
+				String que="select c_no from customer where c_id=?";
+				pstm=conn.prepareStatement(que);
+				pstm.setString(1, b);
+				r=pstm.executeQuery();
+				while(r.next()){
+					c_no=r.getInt(1);
+				}
+			}catch(Exception e) {}			
+			int d=0;
+			try {
+				String que="insert into mypage values(my_seq.NEXTVAL,?,?,?)";
+				pstm=conn.prepareStatement(que);
+				pstm.setInt(1, c_no);
+				pstm.setInt(2, a);
+				pstm.setString(3, c);
+				d=pstm.executeUpdate();
+				pstm.close();
+				conn.close();
+			}catch(Exception e) {}
+		}
 		
+	/*public static void main(String[] args) throws SQLException{//SQL이 제대로 작동하는지 시험하는 메인함수
 		
-		
-		
-	public static void main(String[] args) throws SQLException{//SQL이 제대로 작동하는지 시험하는 메인함수
-		connect();
-		
-		String com[]=new String[10];
-		try {
-			String que="select c_id, my_comm from mypage natural join customer where a_no=?";
-			pstm=conn.prepareStatement(que);
-			pstm.setInt(1,16);
-			r=pstm.executeQuery();
-			int n=0;
-			while(r.next()) {
-				String c_id=r.getString(1);
-				String my_comm=r.getString(2);
-				com[n]=c_id+"/"+my_comm;
-				System.out.println(c_id+"/"+my_comm);
-				n++;
-			}
-			r.close();
-			pstm.close();
-			conn.close();
-		}catch(Exception e) {}
-
-	}
+	}*/
 
 }

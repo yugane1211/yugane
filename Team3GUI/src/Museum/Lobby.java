@@ -15,7 +15,7 @@ import java.util.*;
 import javax.swing.*;
 
 public class Lobby extends JFrame{
-	
+	protected String userid=Login.t.getText();
 	Lobby(){
 		new Notice();
 		Container c = getContentPane();
@@ -71,11 +71,36 @@ public class Lobby extends JFrame{
 				not.setVisible(true);
 			}
 		});
-
-		JLabel comment=new JLabel();
-		comment.setBounds(50, 110, 400, 300);
-		//jdbc 연결!! 로그인한 회원의 한줄평 가져오기
+		
+		JButton logout = new JButton("Logout");//Logout
+		logout.setBounds(500, 350, 100, 30);
+		logout.setBackground(Color.white);
+		logout.setFocusable(false);
+		logout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int r=JOptionPane.showConfirmDialog(null,"로그아웃하시겠습니까?","확인",JOptionPane.YES_OPTION);	              
+	            if(r==JOptionPane.YES_OPTION) {
+	                	JOptionPane.showMessageDialog(null, "로그아웃했습니다.","",JOptionPane.INFORMATION_MESSAGE);
+	                	setVisible(false);
+                	 	new Login();
+	                  }
+			}			
+		});
 		Data_in_DB.connect();
+		String mycomment=Data_in_DB.Mycomm(userid);
+		String[] mycommspl=mycomment.split(",");
+		int h=0;
+		for(String j : mycommspl) {
+			if(j!=null) {
+				JLabel comment=new JLabel(j);
+				comment.setForeground(Color.yellow);
+				comment.setBounds(50,110+30*h,400,26);
+				c.add(comment);
+				h++;
+			}
+		}
+
+		
 		
 		ImageIcon back = new ImageIcon("brooklyn-museum.jpg");
 		Image img11 = back.getImage();
@@ -91,7 +116,7 @@ public class Lobby extends JFrame{
 		cho.setBounds(360,30, 150, 30);
 		
 		
-		JLabel name = new JLabel("ID:3683047293");
+		JLabel name = new JLabel("ID : "+userid);
 		//jdbc 로그인한 회원 아이디 가져오기
 		name.setFont(new Font("SanSerif", Font.BOLD, 15));
 		name.setBounds(530, 30, 150, 30);
@@ -101,10 +126,12 @@ public class Lobby extends JFrame{
 		c.add(f2nd);
 		c.add(sto);
 		c.add(notice);
-		c.add(comment);
+		
 		c.add(name);
 		c.add(cho);
+		c.add(logout);
 		c.add(back2);
+		
 		
 		setVisible(true);	
 	
