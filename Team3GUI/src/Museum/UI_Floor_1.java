@@ -72,7 +72,7 @@ public class UI_Floor_1 extends JFrame {
 	public UI_Floor_1() {
 		setTitle("1층");
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1191, 746);
+		setBounds(100, 100, 1015, 830);
 		setLocationRelativeTo(null);// 가운데서 뜬다. 
 		setResizable(false);// 창크기 변경 불가 
 		contentPane = new JPanel();
@@ -133,16 +133,16 @@ public class UI_Floor_1 extends JFrame {
 		
 		JPanel panel_1 = new JPanel() {
 			public void paintComponent(Graphics g){
-				ImageIcon im1=new ImageIcon("1floor.jpeg");
+				ImageIcon im1=new ImageIcon("C:\\Users\\82105\\git\\yugane\\Team3GUI\\Floor_1.png");
 				Image im1f=im1.getImage();
-	            g.drawImage(im1f,65,39,null);
+	            g.drawImage(im1f,0,9,null);
 	            setOpaque(false);
 	            super.paintComponent(g);
 	        }
 		};
 		
 		panel_1.setLayout(null);
-		panel_1.setBounds(12, 136, 1153, 504);
+		panel_1.setBounds(0, 0, 999, 787);
 		contentPane.add(panel_1);
 		
 		JButton bt_p001 = new JButton("1");

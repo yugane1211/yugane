@@ -47,6 +47,7 @@ public class Pic_Exp extends JFrame {
 	public Pic_Exp(int a, String b) {//a : 그림 번호, b : a 를 data_storage에 있는 파일입력을 이용해 불러온 설명
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 929, 684);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

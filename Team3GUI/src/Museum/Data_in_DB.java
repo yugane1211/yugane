@@ -397,9 +397,67 @@ public class Data_in_DB {
 				conn.close();
 			}catch(Exception e) {}
 		}
+		static String[][] adminart(){//관리자화면에서 그림 테이블 불러오기
+			String[][] art=new String[40][8];
+			connect();
+			int i=0;
+		try {
+			String que="select * from art";
+			pstm=conn.prepareStatement(que);
+			r=pstm.executeQuery();
+			while(r.next()) {
+				String[] g= {Integer.toString(r.getInt(1)),r.getString(2),r.getString(3),
+						r.getString(4),Integer.toString(r.getInt(5)),r.getString(6),
+						r.getString(7),Integer.toString(r.getInt(8))};
+				art[i]=g;
+				i++;
+			}
+			pstm.close();
+			conn.close();
+		}catch(Exception e) {}
+		return art;
+		}
+		static String[][] admincustomer(){//관리자화면에서 고객테이블 불러오기
+			String[][] customer=new String[100][3];
+			connect();
+			int i=0;
+		try {
+			String que="select * from customer";
+			pstm=conn.prepareStatement(que);
+			r=pstm.executeQuery();
+			while(r.next()) {
+				String[] g= {Integer.toString(r.getInt(1)),r.getString(2),r.getString(3)};
+				customer[i]=g;
+				i++;
+			}
+			pstm.close();
+			conn.close();
+		}catch(Exception e) {}
+		return customer;
+		}
+		static String[][] admimypage(){//관리자화면에서 마이페이지 테이블 불러오기
+			String[][] mypage=new String[100][4];
+			connect();
+			int i=0;
+		try {
+			String que="select * from mypage";
+			pstm=conn.prepareStatement(que);
+			r=pstm.executeQuery();
+			while(r.next()) {
+				String[] g= {Integer.toString(r.getInt(1)),Integer.toString(r.getInt(2)),
+						Integer.toString(r.getInt(3)),r.getString(4)};
+				mypage[i]=g;
+				i++;
+			}
+			pstm.close();
+			conn.close();
+		}catch(Exception e) {}
+		return mypage;
+		}
 		
-	/*public static void main(String[] args) throws SQLException{//SQL이 제대로 작동하는지 시험하는 메인함수
+	public static void main(String[] args) throws SQLException{//SQL이 제대로 작동하는지 시험하는 메인함수
 		
-	}*/
+		
+	}
 
 }
