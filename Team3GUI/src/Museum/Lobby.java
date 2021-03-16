@@ -91,7 +91,7 @@ public class Lobby extends JFrame{
 		String[] mycommspl=mycomment.split(",");
 		JTextArea comms=new JTextArea();
 		JScrollPane scr=new JScrollPane(comms);
-		scr.setBounds(50, 500,850,100);
+		scr.setBounds(50, 550,850,100);
 		comms.setFont(new Font("굴림",Font.BOLD,20));
 		comms.setForeground(Color.blue);
 		int h=0;
@@ -125,7 +125,12 @@ public class Lobby extends JFrame{
 		//jdbc 로그인한 회원 아이디 가져오기
 		name.setFont(new Font("SanSerif", Font.BOLD, 15));
 		name.setBounds(530, 30, 150, 30);
-		
+		JLabel mycom = new JLabel("My Comments");
+		mycom.setBounds(70,510,140,40);
+		mycom.setFont(new Font("SanSerif", Font.BOLD | Font.ITALIC, 20));
+		mycom.setBackground(new Color(196,189,186));
+		mycom.setForeground(Color.YELLOW);
+		mycom.setOpaque(true);
 		
 		c.add(f1st);
 		c.add(f2nd);
@@ -135,6 +140,7 @@ public class Lobby extends JFrame{
 		c.add(name);
 		c.add(cho);
 		c.add(logout);
+		c.add(mycom);
 		c.add(back2);
 		
 		

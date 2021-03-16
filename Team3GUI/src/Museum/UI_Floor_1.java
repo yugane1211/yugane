@@ -81,55 +81,11 @@ public class UI_Floor_1 extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel();
-		lblNewLabel.setText("1층");
-		lblNewLabel.setFont(new Font("굴림", Font.BOLD, 20));
-		lblNewLabel.setBounds(12, 10, 157, 43);
+		lblNewLabel.setText("Floor 1");
+		lblNewLabel.setFont(new Font("Yu Gothic UI Semibold", Font.BOLD | Font.ITALIC, 23));
+		lblNewLabel.setBounds(37, 17, 157, 43);
+		lblNewLabel.setForeground(Color.blue);
 		contentPane.add(lblNewLabel);
-		
-		JPanel panel = new JPanel();
-		panel.setBounds(12, 49, 1153, 87);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setFont(new Font("굴림", Font.PLAIN, 15));
-		comboBox.setBounds(127, 25, 204, 32);
-		panel.add(comboBox);
-		Data_in_DB.connect();//sql을 이용해 화가 이름(중복 제거)을 불러와서 체크박스에 추가
-		for (int h=0;h<Data_in_DB.check1_1f().length;h++) {
-			comboBox.addItem(Data_in_DB.check1_1f()[h]);
-		}
-		comboBox.setSelectedItem(null);
-		
-		JComboBox<String> comboBox_1 = new JComboBox<String>();
-		comboBox_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		comboBox_1.setBounds(511, 25, 204, 32);
-		panel.add(comboBox_1);
-		Data_in_DB.connect();//sql 이용해 국가(중복 제거)를 불러와서 체크박스에 추가
-		for (int h=0;h<Data_in_DB.check2_1f().length;h++) {
-			comboBox_1.addItem(Data_in_DB.check2_1f()[h]);
-		}
-		comboBox_1.setSelectedItem(null);
-		
-		JLabel lblNewLabel_1 = new JLabel("\uD654\uAC00 \uC774\uB984");
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_1.setBounds(12, 25, 108, 32);
-		panel.add(lblNewLabel_1);
-		
-		JLabel lblNewLabel_1_1 = new JLabel("\uAD6D\uAC00");
-		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_1_1.setFont(new Font("굴림", Font.PLAIN, 15));
-		lblNewLabel_1_1.setBounds(396, 25, 108, 32);
-		panel.add(lblNewLabel_1_1);
-		
-		JButton sear = new JButton("\uAC80 \uC0C9");
-		sear.setBounds(804, 28, 153, 32);
-		panel.add(sear);
-		JButton res = new JButton("초기화");
-		res.setBounds(983, 28, 153, 32);
-		panel.add(res);
-		
 		
 		JPanel panel_1 = new JPanel() {
 			public void paintComponent(Graphics g){
@@ -144,80 +100,122 @@ public class UI_Floor_1 extends JFrame {
 		panel_1.setLayout(null);
 		panel_1.setBounds(0, 0, 999, 787);
 		contentPane.add(panel_1);
+
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("굴림", Font.PLAIN, 15));
+		comboBox.setBounds(736, 74, 204, 32);
+		panel_1.add(comboBox);
+		Data_in_DB.connect();//sql을 이용해 화가 이름(중복 제거)을 불러와서 체크박스에 추가
+		for (int h=0;h<Data_in_DB.check1_1f().length;h++) {
+			comboBox.addItem(Data_in_DB.check1_1f()[h]);
+		}
+		comboBox.setSelectedItem(null);
+		
+		JComboBox<String> comboBox_1 = new JComboBox<String>();
+		comboBox_1.setFont(new Font("굴림", Font.PLAIN, 15));
+		comboBox_1.setBounds(736, 116, 204, 32);
+		panel_1.add(comboBox_1);
+		Data_in_DB.connect();//sql 이용해 국가(중복 제거)를 불러와서 체크박스에 추가
+		for (int h=0;h<Data_in_DB.check2_1f().length;h++) {
+			comboBox_1.addItem(Data_in_DB.check2_1f()[h]);
+		}
+		comboBox_1.setSelectedItem(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("\uD654\uAC00 \uC774\uB984");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("굴림", Font.ITALIC, 16));
+		lblNewLabel_1.setBounds(625, 74, 108, 32);
+		panel_1.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("\uAD6D\uAC00");
+		lblNewLabel_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1_1.setFont(new Font("굴림", Font.ITALIC, 16));
+		lblNewLabel_1_1.setBounds(625, 116, 108, 32);
+		panel_1.add(lblNewLabel_1_1);
+		
+		JButton sear = new JButton("\uAC80 \uC0C9");
+		sear.setBounds(635, 158, 153, 32);
+		panel_1.add(sear);
+		JButton res = new JButton("초기화");
+		res.setBounds(796, 158, 144, 32);
+		panel_1.add(res);
+		
+		
+		
 		
 		JButton bt_p001 = new JButton("1");
-		bt_p001.setBounds(86, 58, 50, 30);
+		bt_p001.setBounds(49, 520, 78, 44);
 		panel_1.add(bt_p001);
 		bt_p001.setOpaque(true); 
 
 		JButton bt_p002 = new JButton("2");
-		bt_p002.setBounds(417, 81, 50, 30);
+		bt_p002.setBounds(164, 520,76,44);
 		panel_1.add(bt_p002);
 		bt_p002.setOpaque(true);
 		
 		JButton bt_p003 = new JButton("3");
-		bt_p003.setBounds(512, 81, 50, 30);
+		bt_p003.setBounds(49, 669, 78, 45);
 		panel_1.add(bt_p003);
 		bt_p003.setOpaque(true);
 		
 		JButton bt_p004 = new JButton("4");
-		bt_p004.setBounds(649, 81, 50, 30);
+		bt_p004.setBounds(164, 669, 76, 45);
 		panel_1.add(bt_p004);
 		bt_p004.setOpaque(true);
 		
 		JButton bt_p005 = new JButton("5");
-		bt_p005.setBounds(746, 81, 50, 30);
+		bt_p005.setBounds(583, 447,84, 44);
 		panel_1.add(bt_p005);
 		bt_p005.setOpaque(true); 
 		
 		JButton bt_p006 = new JButton("6");
-		bt_p006.setBounds(855, 81, 50, 30);
+		bt_p006.setBounds(674, 447,84, 44);
 		panel_1.add(bt_p006);
 		bt_p006.setOpaque(true); 
 		
 		JButton bt_p007 = new JButton("7");
-		bt_p007.setBounds(626, 48, 50, 30);
+		bt_p007.setBounds(583, 497, 84, 40);
 		panel_1.add(bt_p007);
 		bt_p007.setOpaque(true); 
 		
 		JButton bt_p008 = new JButton("8");
-		bt_p008.setBounds(178, 214, 50, 30);
+		bt_p008.setBounds(674, 497, 84,40);
 		panel_1.add(bt_p008);
 		bt_p008.setOpaque(true); 
 		
 		JButton bt_p009 = new JButton("9");
-		bt_p009.setBounds(180, 347, 50, 30);
+		bt_p009.setBounds(766, 520, 74, 46);
 		panel_1.add(bt_p009);
 		bt_p009.setOpaque(true); 
 		
 		JButton bt_p010 = new JButton("10");
-		bt_p010.setBounds(84, 268, 50, 30);
+		bt_p010.setBounds(317, 496, 68, 41);
 		panel_1.add(bt_p010);
 		bt_p010.setOpaque(true);
 		
 		
 		JButton bt_p011 = new JButton("11");
-		bt_p011.setBounds(420, 150, 50, 30);
+		bt_p011.setBounds(879,520,74,46);
 		panel_1.add(bt_p011);
 		bt_p011.setOpaque(true); 
 		
 		JButton bt_p012 = new JButton("12");
-		bt_p012.setBounds(512, 150, 50, 30);
+		bt_p012.setBounds(559, 594, 60, 46);
 		panel_1.add(bt_p012);
 		bt_p012.setOpaque(true); 
 		
 		JButton bt_p013 = new JButton("13");
-		bt_p013.setBounds(646, 150, 50, 30);
+		bt_p013.setBounds(620, 594, 60, 46);
 		panel_1.add(bt_p013);
 		bt_p013.setOpaque(true); 
 		
 		JButton bt_p014 = new JButton("14");
-		bt_p014.setBounds(745, 150, 50, 30);
+		bt_p014.setBounds(681, 594, 60, 46);
 		panel_1.add(bt_p014);
 		bt_p014.setOpaque(true); 
 		
 		JButton bt_p015 = new JButton("15");
-		bt_p015.setBounds(857, 149, 50, 30);
+		bt_p015.setBounds(688, 542, 70, 46);
 		panel_1.add(bt_p015);
 		bt_p015.setOpaque(true); 
 		
@@ -333,23 +331,27 @@ public class UI_Floor_1 extends JFrame {
 		
 		
 		JLabel lblNewLabel_2 = new JLabel("Top 5");
-		lblNewLabel_2.setFont(new Font("굴림", Font.BOLD, 20));
+		lblNewLabel_2.setFont(new Font("굴림", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel_2.setForeground(Color.BLUE);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2.setBounds(12, 661, 157, 38);
-		contentPane.add(lblNewLabel_2);
+		lblNewLabel_2.setBounds(12, 740, 100, 38);
+		panel_1.add(lblNewLabel_2);
 		
-		JLabel topc = new JLabel("New label");//스레드
-		topc.setFont(new Font("굴림", Font.PLAIN, 17));
-		topc.setBounds(151, 662, 775, 38);
-		contentPane.add(topc);
+		JLabel topc = new JLabel();//스레드
+		topc.setFont(new Font("굴림", Font.BOLD | Font.ITALIC, 21));
+		topc.setForeground(Color.BLUE);
+		topc.setBounds(115, 740, 403, 38);
+		panel_1.add(topc);
 		Data_in_DB.connect();
 		String[] top555=Data_in_DB.top_five();
 		TOP5 lkk=new TOP5(topc, top555);
 		lkk.start();
 		
 		JButton btnNewButton_1 = new JButton("2층으로");
-		btnNewButton_1.setBounds(919, 670, 117, 29);
-		contentPane.add(btnNewButton_1);
+		btnNewButton_1.setBounds(675, 745, 136, 30);
+		btnNewButton_1.setBackground(new Color(255, 255, 204));
+		btnNewButton_1.setFont(new Font("새굴림", Font.BOLD, 17));
+		panel_1.add(btnNewButton_1);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -358,8 +360,10 @@ public class UI_Floor_1 extends JFrame {
 			}
 		});
 		JButton btnNewButton_2 = new JButton("로비로 가기");
-		btnNewButton_2.setBounds(1048, 670, 117, 29);
-		contentPane.add(btnNewButton_2);
+		btnNewButton_2.setBounds(823, 745, 164, 30);
+		btnNewButton_2.setBackground(new Color(255, 255, 204));
+		btnNewButton_2.setFont(new Font("새굴림", Font.BOLD, 17));
+		panel_1.add(btnNewButton_2);
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
@@ -370,6 +374,10 @@ public class UI_Floor_1 extends JFrame {
 		JButton[] btngp= {bt_p001,bt_p002,bt_p003,bt_p004,bt_p005,
 				bt_p006,bt_p007,bt_p008,bt_p009,bt_p010,bt_p011,bt_p012,
 				bt_p013,bt_p014,bt_p015};
+		for(int i=0;i<15;i++) {
+			btngp[i].setBackground(new Color(108,54,77));
+			btngp[i].setForeground(Color.yellow);
+		}
 		sear.addActionListener(new ActionListener() {//특정 조건에 맞으면 검색
 			public void actionPerformed(ActionEvent e) {				
 				int i1=comboBox.getSelectedIndex();
@@ -382,7 +390,8 @@ public class UI_Floor_1 extends JFrame {
 				for(int j=0;j<numpic.length;j++) {
 					for(int i=0;i<btngp.length;i++) {	
 						if(numpic[j]==Integer.parseInt(btngp[i].getText())) {
-							btngp[i].setBackground(Color.yellow);							
+							btngp[i].setBackground(Color.yellow);	
+							btngp[i].setForeground(Color.GRAY);	
 						}
 						
 					}
@@ -392,7 +401,8 @@ public class UI_Floor_1 extends JFrame {
 		res.addActionListener(new ActionListener() {//검색조건 초기화
 			public void actionPerformed(ActionEvent e) {
 				for(int i=0;i<btngp.length;i++) {
-					btngp[i].setBackground(Color.white);
+					btngp[i].setBackground(new Color(108,54,77));
+					btngp[i].setForeground(Color.yellow);	
 				}
 				comboBox.setSelectedItem(null);
 				comboBox_1.setSelectedItem(null);

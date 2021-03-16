@@ -49,6 +49,7 @@ public class Pic_Exp extends JFrame {
 		setBounds(100, 100, 929, 684);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.LIGHT_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -102,12 +103,16 @@ public class Pic_Exp extends JFrame {
 		
 		JPanel comm_in = new JPanel();//한줄평들을 나열해놓을 공간 - 나중에 수정할 수도 있음
 		comm_in.setBounds(163, 490, 700, 120);
+		comm_in.setBackground(Color.LIGHT_GRAY);
 		comm_in.setLayout(null);
 		contentPane.add(comm_in);
 		
 		Data_in_DB.connect();
 		int countt=Data_in_DB.show_count(a+16);
 		JLabel like_count = new JLabel(Integer.toString(countt));
+		like_count.setForeground(Color.BLUE);
+		like_count.setFont(new Font("굴림", Font.BOLD, 17));
+		like_count.setHorizontalAlignment(SwingConstants.CENTER);
 		like_count.setBounds(16, 575, 125, 32);
 		contentPane.add(like_count);
 		
@@ -137,7 +142,10 @@ public class Pic_Exp extends JFrame {
 		for(int i=0;i<pic_com.length;i++) {
 			if(pic_com[i]!=null) {
 				comd[i]=new JLabel(pic_com[i]);
-				comd[i].setBounds(0, 20*i, 700, 20);
+				comd[i].setBounds(6, 20*i, 700, 20);
+				comd[i].setBackground(Color.LIGHT_GRAY);
+				comd[i].setFont(new Font("굴림",Font.BOLD,16));
+				comd[i].setForeground(Color.blue);
 				comm_in.add(comd[i]);
 				comd[i].setOpaque(true);
 				comd[i].setVisible(true);
@@ -150,6 +158,7 @@ public class Pic_Exp extends JFrame {
 				Data_in_DB.connect();
 				int updatedup=Data_in_DB.show_count(a+16);
 				like_count.setText(Integer.toString(updatedup));
+				like.setEnabled(false);
 			}
 		});
 		setVisible(true);

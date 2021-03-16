@@ -49,28 +49,28 @@ public class Login extends JFrame{
 			c.add(imd);
 	      
 	      setLocationRelativeTo(null);
-	      JLabel j1=new JLabel("3team");
-	      j1.setFont(new Font("±Ã¼­", Font.PLAIN, 30));
+	      JLabel j1=new JLabel("Welcome to");
+	      j1.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
 	      j1.setForeground(Color.ORANGE);
-	      j1.setBounds(100, 50, 200, 200);
+	      j1.setBounds(60, 45,400, 200);
 	      
 
-	      JLabel j4=new JLabel("3team¿¡ ¿À½Å°É È¯¿µÇÕ´Ï´Ù.");
-	      j4.setFont(new Font("¸¼Àº°íµñ", Font.PLAIN, 15));
+	      JLabel j4=new JLabel("3Team's museum!");
+	      j4.setFont(new Font("Comic Sans MS", Font.PLAIN, 35));
 	      j4.setForeground(Color.ORANGE);
-	      j4.setBounds(100, 90, 200, 200);
+	      j4.setBounds(60, 90,400, 200);
 	      
 	      
 	      
 	      t.setBounds(130, 230, 120, 20);
 	      
 	      JLabel j2=new JLabel("¾ÆÀÌµð");
-	      j2.setFont(new Font("¸¼Àº°íµñ", Font.PLAIN, 14));
+	      j2.setFont(new Font("¸¼Àº°íµñ", Font.BOLD, 16));
 	      j2.setForeground(Color.ORANGE);
 	      j2.setBounds(70, 190 , 100, 100);
 	      
 	      JLabel j3=new JLabel("ºñ¹Ð¹øÈ£");
-	      j3.setFont(new Font("¸¼Àº°íµñ", Font.PLAIN, 14));
+	      j3.setFont(new Font("¸¼Àº°íµñ", Font.BOLD, 16));
 	      j3.setForeground(Color.ORANGE);
 	      j3.setBounds(55, 230 , 100, 100);
 	     
@@ -78,13 +78,13 @@ public class Login extends JFrame{
 	      t1.setBounds(130, 273, 120, 20);
 	      
 	      JButton b=new JButton("È¸¿ø°¡ÀÔ");
-	      b.setFont(new Font("¸¼Àº°íµñ", Font.PLAIN, 10));
+	      b.setFont(new Font("±¼¸²", Font.PLAIN, 10));
 	      
 	      b.setBounds(70, 320 , 80, 20);
 	      
 	      
 	      JButton bb=new JButton("·Î±×ÀÎ");
-	      bb.setFont(new Font("¸¼Àº°íµñ", Font.PLAIN, 10));
+	      bb.setFont(new Font("±¼¸²", Font.PLAIN, 10));
 	      
 	      bb.setBounds(180, 320 , 80, 20);
 	   	      
@@ -174,9 +174,6 @@ public class Login extends JFrame{
 				}
 			});
 	         
-	         /*JLabel j1=new JLabel("¿µ¹®/¼ýÀÚ·Î ÀÔ·ÂÇÏ¼¼¿ä");
-	         j1.setBounds(180,48, 250, 20);
-	         c.add(j1);*/
 	         
 	         JLabel j2=new JLabel("ºñ¹Ð¹øÈ£");
 	         j2.setBounds(90,90, 120, 20);

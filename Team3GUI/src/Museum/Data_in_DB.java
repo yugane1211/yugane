@@ -435,7 +435,7 @@ public class Data_in_DB {
 		}catch(Exception e) {}
 		return customer;
 		}
-		static String[][] admimypage(){//관리자화면에서 마이페이지 테이블 불러오기
+		static String[][] adminmypage(){//관리자화면에서 마이페이지 테이블 불러오기
 			String[][] mypage=new String[100][4];
 			connect();
 			int i=0;
@@ -454,8 +454,121 @@ public class Data_in_DB {
 		}catch(Exception e) {}
 		return mypage;
 		}
+		static String[][] mypdel(int c) {//mypage delete
+			connect();
+			String[][] upd=new String[100][4];
+			int d=0;
+			try {
+			String que="delete from mypage where my_no=?";
+			pstm=conn.prepareStatement(que);
+			pstm.setInt(1, c);
+			d=pstm.executeUpdate();
+			upd=adminmypage();
+			pstm.close();
+			conn.close();
+			
+		}catch(Exception e) {}
+			return upd;
+		}
+		static String[][] artdel(int c) {//art delete
+			connect();
+			String[][] upd=new String[100][8];
+			int d=0;
+			try {
+			String que="delete from art where a_no=?";
+			pstm=conn.prepareStatement(que);
+			pstm.setInt(1, c);
+			d=pstm.executeUpdate();
+			upd=adminart();
+			pstm.close();
+			conn.close();
+			
+		}catch(Exception e) {}
+			return upd;
+		}
+		static String[][] cusdel(int c) {//customer delete
+			connect();
+			String[][] upd=new String[100][4];
+			int d=0;
+			try {
+			String que="delete from customer where c_no=?";
+			pstm=conn.prepareStatement(que);
+			pstm.setInt(1, c);
+			d=pstm.executeUpdate();
+			upd=admincustomer();
+			pstm.close();
+			conn.close();
+			
+		}catch(Exception e) {}
+			return upd;
+		}
+		static String[][] artins(String[] a) {//art insert
+			connect();
+			String[][] upd=new String[100][8];
+			int d=0;
+			try {
+			String que="insert into art values(art_seq.nextval,?,?,?,?,?,?,?)";
+			pstm=conn.prepareStatement(que);
+			for(int j=0;j<7;j++) {
+				if(j==3||j==6) {
+					pstm.setInt(j+1, Integer.parseInt(a[j]));
+				}else {
+					pstm.setString(j+1, a[j]);
+				}
+			}
+			d=pstm.executeUpdate();
+			upd=adminart();
+			pstm.close();
+			conn.close();
+			
+		}catch(Exception e) {}
+			return upd;
+		}
+		static String[][] artupd(String[] a, int b) {//art update
+			connect();
+			String[][] upd=new String[100][8];
+			int d=0;
+			try {
+			String que="update art"
+					+ " set a_name=?, a_floor=?,a_artist=?,a_year=?,a_country=?,"
+					+ "a_ename=?,a_fav=?"
+					+ " where a_no="+b;
+			pstm=conn.prepareStatement(que);
+			for(int j=0;j<7;j++) {
+				if(j==3||j==6) {
+					pstm.setInt(j+1, Integer.parseInt(a[j]));
+				}else {
+					pstm.setString(j+1, a[j]);
+				}
+			}
+			d=pstm.executeUpdate();
+			upd=adminart();
+			pstm.close();
+			conn.close();
+			
+		}catch(Exception e) {}
+			return upd;
+		}
+		static String[][] cusupd(String a1,String a2, int b) {//customer update
+			connect();
+			String[][] upd=new String[100][3];
+			int d=0;
+			try {
+			String que="update customer set c_id=?, c_pw=? where c_no="+b;
+			pstm=conn.prepareStatement(que);
+			pstm.setString(1, a1);
+			pstm.setString(2, a2);
+			d=pstm.executeUpdate();
+			upd=admincustomer();
+			pstm.close();
+			conn.close();
+			
+		}catch(Exception e) {}
+			return upd;
+		}
 		
 	public static void main(String[] args) throws SQLException{//SQL이 제대로 작동하는지 시험하는 메인함수
+
 		
 		
 	}

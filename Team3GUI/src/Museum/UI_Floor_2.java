@@ -69,6 +69,7 @@ public class UI_Floor_2 extends JFrame {
 	 * Create the frame.
 	 */
 	public UI_Floor_2() {
+		setTitle("2층");
 		setLocation(new Point(0, 0));
 		setBackground(Color.white);
 		setBounds(100, 100, 1015, 830);
@@ -88,15 +89,11 @@ public class UI_Floor_2 extends JFrame {
 		};
 		
 		panel_1.setLayout(null);
-		//JLabel image2=new JLabel();
-		//panel_1.add(image2);
 		panel_1.setBounds(0, 0, 999, 787);
-		//image2.setBounds(0, 0, 1153, 504);
 		contentPane.add(panel_1);
 		
 		//but1~15 : 클릭시 각 그림의 이미지와 설명이 담긴 패널이 나옴
 		JButton but1 = new JButton("016");
-		but1.setBackground(Color.WHITE);
 		but1.setBounds(598, 455, 53, 41);
 		panel_1.add(but1);
 		but1.setOpaque(true);
@@ -105,70 +102,57 @@ public class UI_Floor_2 extends JFrame {
 		JButton but2 = new JButton("017");
 		but2.setBounds(652, 455, 53, 41);
 		panel_1.add(but2);
-		but2.setBackground(Color.WHITE);
+
 		
 		JButton but3 = new JButton("018");
-		but3.setBackground(Color.WHITE);
 		but3.setBounds(553, 502, 53, 41);
 		panel_1.add(but3);
 		
 		JButton but4 = new JButton("019");
-		but4.setBackground(Color.WHITE);
 		but4.setBounds(606, 502, 53, 41);
 		panel_1.add(but4);
 		
 		JButton but5 = new JButton("020");
-		but5.setBackground(Color.WHITE);
 		but5.setBounds(659, 502, 53, 41);
 		panel_1.add(but5);
 		
 		JButton but6 = new JButton("021");
-		but6.setBackground(Color.WHITE);
 		but6.setBounds(252, 453, 71, 43);
 		panel_1.add(but6);
 		
 		JButton but7 = new JButton("022");
-		but7.setBackground(Color.WHITE);
 		but7.setBounds(326, 453, 71, 43);
 		panel_1.add(but7);
 		
 		JButton but8 = new JButton("023");
-		but8.setBackground(Color.WHITE);
 		but8.setBounds(252, 502, 71, 43);
 		panel_1.add(but8);
 		
 		JButton but9 = new JButton("024");
-		but9.setBackground(Color.WHITE);
 		but9.setBounds(326, 502, 71, 43);
 		panel_1.add(but9);
 		
 		JButton but10 = new JButton("025");
-		but10.setBackground(Color.WHITE);
 		but10.setBounds(290, 551, 67, 43);
 		panel_1.add(but10);
 		
 		JButton but11 = new JButton("026");
-		but11.setBackground(Color.WHITE);
 		but11.setBounds(365, 551, 63, 43);
 		panel_1.add(but11);
 		
 		JButton but12 = new JButton("027");
-		but12.setBackground(Color.WHITE);
 		but12.setBounds(708, 502, 70, 41);
 		panel_1.add(but12);
 		
 		JButton but13 = new JButton("028");
-		but13.setBackground(Color.WHITE);
 		but13.setBounds(707, 455, 71, 41);
 		panel_1.add(but13);
 		
 		JButton but14 = new JButton("029");
-		but14.setBackground(Color.WHITE);
 		but14.setBounds(778, 681, 81, 46);
 		panel_1.add(but14);
 		
 		JButton but15 = new JButton("030");
-		but15.setBackground(Color.WHITE);
 		but15.setBounds(860, 681, 74, 46);
 		panel_1.add(but15);
 		
@@ -227,40 +211,36 @@ public class UI_Floor_2 extends JFrame {
 		GoToFirst.setFont(new Font("새굴림", Font.BOLD, 17));
 		
 			
-			JButton LobbyBut = new JButton("\uB85C\uBE44\uB85C \uB098\uAC00\uAE30");//로비로 나가기
-			LobbyBut.setBounds(823, 745, 164, 30);
-			panel_1.add(LobbyBut);
-			LobbyBut.setBackground(new Color(255, 255, 204));
-			LobbyBut.setFont(new Font("새굴림", Font.BOLD, 17));
+		JButton LobbyBut = new JButton("\uB85C\uBE44\uB85C \uB098\uAC00\uAE30");//로비로 나가기
+		LobbyBut.setBounds(823, 745, 164, 30);
+		panel_1.add(LobbyBut);
+		LobbyBut.setBackground(new Color(255, 255, 204));
+		LobbyBut.setFont(new Font("새굴림", Font.BOLD, 17));			
 			
+		JLabel lblNewLabel_2 = new JLabel("Top 5");
+		lblNewLabel_2.setForeground(Color.BLUE);
+		lblNewLabel_2.setBounds(12, 740, 100, 38);
+		panel_1.add(lblNewLabel_2);
+		lblNewLabel_2.setFont(new Font("굴림", Font.BOLD | Font.ITALIC, 20));
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
 			
+		JLabel topc = new JLabel();//탑 5 그림의 제목, 화가가 표출될 예정(스레드 이용)
+		topc.setForeground(Color.BLUE);
+		topc.setBounds(115, 740, 403, 38);
+		panel_1.add(topc);
+		topc.setFont(new Font("굴림", Font.BOLD | Font.ITALIC, 21));
 			
-			
-			JLabel lblNewLabel_2 = new JLabel("Top 5");
-			lblNewLabel_2.setForeground(Color.BLUE);
-			lblNewLabel_2.setBounds(12, 740, 100, 38);
-			panel_1.add(lblNewLabel_2);
-			lblNewLabel_2.setFont(new Font("굴림", Font.BOLD | Font.ITALIC, 20));
-			lblNewLabel_2.setHorizontalAlignment(SwingConstants.CENTER);
-			
-			JLabel topc = new JLabel();//탑 5 그림의 제목, 화가가 표출될 예정(스레드 이용)
-			topc.setForeground(Color.BLUE);
-			topc.setBounds(115, 740, 403, 38);
-			panel_1.add(topc);
-			
-			topc.setFont(new Font("굴림", Font.BOLD | Font.ITALIC, 21));
-			
-			Data_in_DB.connect();
-			String[] top555=Data_in_DB.top_five();
-			
-			TOP5 lkk=new TOP5(topc, top555);
-			lkk.start();
-			LobbyBut.addActionListener(new ActionListener() {//누르면 로비로 돌아가기
-				public void actionPerformed(ActionEvent e) {
-					setVisible(false);
-					new Lobby();
-				}
-			});
+		Data_in_DB.connect();
+		String[] top555=Data_in_DB.top_five();
+		TOP5 lkk=new TOP5(topc, top555);
+		lkk.start();
+		
+		LobbyBut.addActionListener(new ActionListener() {//누르면 로비로 돌아가기
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				new Lobby();
+			}
+		});
 		GoToFirst.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);

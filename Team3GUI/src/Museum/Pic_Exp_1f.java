@@ -1,5 +1,6 @@
 package Museum;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Image;
@@ -89,6 +90,8 @@ public class Pic_Exp_1f extends JFrame{
 			if(pic_com[i]!=null) {
 				comd[i]=new JLabel(pic_com[i]);
 				comd[i].setBounds(0, 20*i, 700, 20);
+				comd[i].setFont(new Font("±¼¸²",Font.BOLD,16));
+				comd[i].setForeground(Color.blue);
 				comm_in.add(comd[i]);
 				comd[i].setOpaque(true);
 				comd[i].setVisible(true);
@@ -98,6 +101,9 @@ public class Pic_Exp_1f extends JFrame{
 		Data_in_DB.connect();
 		int countt=Data_in_DB.show_count(a+1);
 		JLabel like_count = new JLabel(Integer.toString(countt));
+		like_count.setForeground(Color.BLUE);
+		like_count.setFont(new Font("±¼¸²", Font.BOLD, 17));
+		like_count.setHorizontalAlignment(SwingConstants.CENTER);
 		like_count.setBounds(16, 575, 125, 32);
 		contentPane.add(like_count);
 		
@@ -126,6 +132,7 @@ public class Pic_Exp_1f extends JFrame{
 				Data_in_DB.connect();
 				int updatedup=Data_in_DB.show_count(a+1);
 				like_count.setText(Integer.toString(updatedup));
+				like.setEnabled(false);
 			}
 		});
 	}
